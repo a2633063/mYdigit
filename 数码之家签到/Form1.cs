@@ -50,7 +50,10 @@ namespace 数码之家签到
             //MessageBox.Show("args[0]:"+ args[0] +"\r\n+state:"+ web_max_state);
             btnLogin_Click(null, null);
         }
-
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            setting_save(null, null);
+        }
         private void setting_save(object sender, EventArgs e)
         {
             Properties.Settings.Default.Save();
@@ -195,5 +198,7 @@ namespace 数码之家签到
             FrmAbout frmAbout = new FrmAbout();
             frmAbout.ShowDialog();
         }
+
+
     }
 }

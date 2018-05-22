@@ -31,31 +31,31 @@
             this.components = new System.ComponentModel.Container();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.chkUseProxy = new System.Windows.Forms.CheckBox();
+            this.ProxyPort = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ProxyPW = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ProxyID = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ProxyUrl = new System.Windows.Forms.TextBox();
             this.btnUrtGo = new System.Windows.Forms.Button();
             this.url = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnSign = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtLoginPassword = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtLoginID = new System.Windows.Forms.TextBox();
             this.panel_Log = new System.Windows.Forms.Panel();
             this.Log = new System.Windows.Forms.Label();
-            this.btnSign = new System.Windows.Forms.Button();
-            this.txtLoginPassword = new System.Windows.Forms.TextBox();
-            this.txtLoginID = new System.Windows.Forms.TextBox();
-            this.ProxyPort = new System.Windows.Forms.NumericUpDown();
-            this.ProxyPW = new System.Windows.Forms.TextBox();
-            this.ProxyID = new System.Windows.Forms.TextBox();
-            this.ProxyUrl = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProxyPort)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.panel_Log.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ProxyPort)).BeginInit();
             this.SuspendLayout();
             // 
             // webBrowser1
@@ -90,6 +90,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "代理设置";
             // 
+            // chkUseProxy
+            // 
+            this.chkUseProxy.AutoSize = true;
+            this.chkUseProxy.Location = new System.Drawing.Point(6, 20);
+            this.chkUseProxy.Name = "chkUseProxy";
+            this.chkUseProxy.Size = new System.Drawing.Size(72, 16);
+            this.chkUseProxy.TabIndex = 108;
+            this.chkUseProxy.Text = "使用代理";
+            this.chkUseProxy.UseVisualStyleBackColor = true;
+            // 
+            // ProxyPort
+            // 
+            this.ProxyPort.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::数码之家签到.Properties.Settings.Default, "ProxyPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ProxyPort.Location = new System.Drawing.Point(236, 42);
+            this.ProxyPort.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.ProxyPort.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ProxyPort.Name = "ProxyPort";
+            this.ProxyPort.Size = new System.Drawing.Size(55, 21);
+            this.ProxyPort.TabIndex = 107;
+            this.ProxyPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ProxyPort.Value = global::数码之家签到.Properties.Settings.Default.ProxyPort;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -98,6 +128,17 @@
             this.label5.Size = new System.Drawing.Size(35, 12);
             this.label5.TabIndex = 5;
             this.label5.Text = "密码:";
+            // 
+            // ProxyPW
+            // 
+            this.ProxyPW.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "ProxyPW", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ProxyPW.Location = new System.Drawing.Point(69, 96);
+            this.ProxyPW.Name = "ProxyPW";
+            this.ProxyPW.PasswordChar = '*';
+            this.ProxyPW.Size = new System.Drawing.Size(222, 21);
+            this.ProxyPW.TabIndex = 4;
+            this.ProxyPW.Text = global::数码之家签到.Properties.Settings.Default.ProxyPW;
+            this.ProxyPW.Leave += new System.EventHandler(this.setting_save);
             // 
             // label4
             // 
@@ -108,6 +149,16 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "用户:";
             // 
+            // ProxyID
+            // 
+            this.ProxyID.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "ProxyID", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ProxyID.Location = new System.Drawing.Point(69, 69);
+            this.ProxyID.Name = "ProxyID";
+            this.ProxyID.Size = new System.Drawing.Size(222, 21);
+            this.ProxyID.TabIndex = 2;
+            this.ProxyID.Text = global::数码之家签到.Properties.Settings.Default.ProxyID;
+            this.ProxyID.Leave += new System.EventHandler(this.setting_save);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -117,15 +168,15 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "代理地址:";
             // 
-            // chkUseProxy
+            // ProxyUrl
             // 
-            this.chkUseProxy.AutoSize = true;
-            this.chkUseProxy.Location = new System.Drawing.Point(6, 20);
-            this.chkUseProxy.Name = "chkUseProxy";
-            this.chkUseProxy.Size = new System.Drawing.Size(72, 16);
-            this.chkUseProxy.TabIndex = 108;
-            this.chkUseProxy.Text = "使用代理";
-            this.chkUseProxy.UseVisualStyleBackColor = true;
+            this.ProxyUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "ProxyUrl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ProxyUrl.Location = new System.Drawing.Point(69, 42);
+            this.ProxyUrl.Name = "ProxyUrl";
+            this.ProxyUrl.Size = new System.Drawing.Size(161, 21);
+            this.ProxyUrl.TabIndex = 0;
+            this.ProxyUrl.Text = global::数码之家签到.Properties.Settings.Default.ProxyUrl;
+            this.ProxyUrl.Leave += new System.EventHandler(this.setting_save);
             // 
             // btnUrtGo
             // 
@@ -167,23 +218,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "网页登录设置";
             // 
-            // label1
+            // btnSign
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 12);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "密码:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "用户名:";
+            this.btnSign.Location = new System.Drawing.Point(102, 72);
+            this.btnSign.Name = "btnSign";
+            this.btnSign.Size = new System.Drawing.Size(75, 23);
+            this.btnSign.TabIndex = 7;
+            this.btnSign.Text = "打卡";
+            this.btnSign.UseVisualStyleBackColor = true;
+            this.btnSign.Click += new System.EventHandler(this.btnSign_Click);
             // 
             // btnLogin
             // 
@@ -194,6 +237,45 @@
             this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 12);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "密码:";
+            // 
+            // txtLoginPassword
+            // 
+            this.txtLoginPassword.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "txtLoginPassword", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtLoginPassword.Location = new System.Drawing.Point(59, 41);
+            this.txtLoginPassword.Name = "txtLoginPassword";
+            this.txtLoginPassword.PasswordChar = '*';
+            this.txtLoginPassword.Size = new System.Drawing.Size(199, 21);
+            this.txtLoginPassword.TabIndex = 4;
+            this.txtLoginPassword.Text = global::数码之家签到.Properties.Settings.Default.txtLoginPassword;
+            this.txtLoginPassword.Leave += new System.EventHandler(this.setting_save);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 12);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "用户名:";
+            // 
+            // txtLoginID
+            // 
+            this.txtLoginID.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "txtLoginID", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtLoginID.Location = new System.Drawing.Point(59, 14);
+            this.txtLoginID.Name = "txtLoginID";
+            this.txtLoginID.Size = new System.Drawing.Size(199, 21);
+            this.txtLoginID.TabIndex = 2;
+            this.txtLoginID.Text = global::数码之家签到.Properties.Settings.Default.txtLoginID;
+            this.txtLoginID.Leave += new System.EventHandler(this.setting_save);
             // 
             // panel_Log
             // 
@@ -214,88 +296,6 @@
             this.Log.Size = new System.Drawing.Size(994, 18);
             this.Log.TabIndex = 0;
             this.Log.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnSign
-            // 
-            this.btnSign.Location = new System.Drawing.Point(102, 72);
-            this.btnSign.Name = "btnSign";
-            this.btnSign.Size = new System.Drawing.Size(75, 23);
-            this.btnSign.TabIndex = 7;
-            this.btnSign.Text = "打卡";
-            this.btnSign.UseVisualStyleBackColor = true;
-            this.btnSign.Click += new System.EventHandler(this.btnSign_Click);
-            // 
-            // txtLoginPassword
-            // 
-            this.txtLoginPassword.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "txtLoginPassword", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtLoginPassword.Location = new System.Drawing.Point(59, 41);
-            this.txtLoginPassword.Name = "txtLoginPassword";
-            this.txtLoginPassword.PasswordChar = '*';
-            this.txtLoginPassword.Size = new System.Drawing.Size(199, 21);
-            this.txtLoginPassword.TabIndex = 4;
-            this.txtLoginPassword.Text = global::数码之家签到.Properties.Settings.Default.txtLoginPassword;
-            this.txtLoginPassword.Leave += new System.EventHandler(this.setting_save);
-            // 
-            // txtLoginID
-            // 
-            this.txtLoginID.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "txtLoginID", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtLoginID.Location = new System.Drawing.Point(59, 14);
-            this.txtLoginID.Name = "txtLoginID";
-            this.txtLoginID.Size = new System.Drawing.Size(199, 21);
-            this.txtLoginID.TabIndex = 2;
-            this.txtLoginID.Text = global::数码之家签到.Properties.Settings.Default.txtLoginID;
-            this.txtLoginID.Leave += new System.EventHandler(this.setting_save);
-            // 
-            // ProxyPort
-            // 
-            this.ProxyPort.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::数码之家签到.Properties.Settings.Default, "ProxyPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ProxyPort.Location = new System.Drawing.Point(236, 42);
-            this.ProxyPort.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.ProxyPort.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.ProxyPort.Name = "ProxyPort";
-            this.ProxyPort.Size = new System.Drawing.Size(55, 21);
-            this.ProxyPort.TabIndex = 107;
-            this.ProxyPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ProxyPort.Value = global::数码之家签到.Properties.Settings.Default.ProxyPort;
-            // 
-            // ProxyPW
-            // 
-            this.ProxyPW.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "ProxyPW", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ProxyPW.Location = new System.Drawing.Point(69, 96);
-            this.ProxyPW.Name = "ProxyPW";
-            this.ProxyPW.PasswordChar = '*';
-            this.ProxyPW.Size = new System.Drawing.Size(222, 21);
-            this.ProxyPW.TabIndex = 4;
-            this.ProxyPW.Text = global::数码之家签到.Properties.Settings.Default.ProxyPW;
-            this.ProxyPW.Leave += new System.EventHandler(this.setting_save);
-            // 
-            // ProxyID
-            // 
-            this.ProxyID.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "ProxyID", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ProxyID.Location = new System.Drawing.Point(69, 69);
-            this.ProxyID.Name = "ProxyID";
-            this.ProxyID.Size = new System.Drawing.Size(222, 21);
-            this.ProxyID.TabIndex = 2;
-            this.ProxyID.Text = global::数码之家签到.Properties.Settings.Default.ProxyID;
-            this.ProxyID.Leave += new System.EventHandler(this.setting_save);
-            // 
-            // ProxyUrl
-            // 
-            this.ProxyUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::数码之家签到.Properties.Settings.Default, "ProxyUrl", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ProxyUrl.Location = new System.Drawing.Point(69, 42);
-            this.ProxyUrl.Name = "ProxyUrl";
-            this.ProxyUrl.Size = new System.Drawing.Size(161, 21);
-            this.ProxyUrl.TabIndex = 0;
-            this.ProxyUrl.Text = global::数码之家签到.Properties.Settings.Default.ProxyUrl;
-            this.ProxyUrl.Leave += new System.EventHandler(this.setting_save);
             // 
             // button1
             // 
@@ -322,12 +322,13 @@
             this.Controls.Add(this.webBrowser1);
             this.Name = "Form1";
             this.Text = "数码之家";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ProxyPort)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel_Log.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ProxyPort)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
