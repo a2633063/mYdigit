@@ -63,7 +63,7 @@ namespace 数码之家签到
         {
             if (url.Text.Length < 3)
             {
-                url.Text = "http://www.mydigit.cn/u.php";
+                url.Text = "https://www.mydigit.cn/plugin.php?id=k_misign:sign";
             }
             if (!url.Text.StartsWith("http://") && !url.Text.StartsWith("https://"))
             {
@@ -81,7 +81,7 @@ namespace 数码之家签到
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            url.Text = "http://www.mydigit.cn/u.php";
+            url.Text = "https://www.mydigit.cn/plugin.php?id=k_misign:sign";
             btnUrtGo_Click(null, null);
             webBrowser1_state = 0;
         }
@@ -92,7 +92,7 @@ namespace 数码之家签到
             if (web_max_state < webBrowser1_state) return;
             switch (webBrowser1_state)
             {//0:进入登录页面并点击登录;1:确认登录结果;2:点击签到按钮;3:签到完成自动退出;
-                case 0: //刚进入http://www.mydigit.cn/u.php页面 判断是否登录过
+                case 0: //刚进入https://www.mydigit.cn/plugin.php?id=k_misign:sign页面 判断是否登录过
                     try
                     {
                         if (webBrowser1.Document.All["pwuser"] != null)
@@ -103,10 +103,11 @@ namespace 数码之家签到
                                 break;
                             }
                         }
-                        webBrowser1.Document.All["pwuser"].SetAttribute("value", txtLoginID.Text);
-                        webBrowser1.Document.All["pwpwd"].SetAttribute("value", txtLoginPassword.Text);
-                        mHtmlAll = webBrowser1.Document.GetElementsByTagName("Button");
 
+                        webBrowser1.Document.All["ls_username"].InnerText = txtLoginID.Text;
+                        webBrowser1.Document.All["ls_password"].InnerText = txtLoginPassword.Text;
+                        webBrowser1.Document.All["ls_cookietime"].InvokeMember("click");
+                        mHtmlAll = webBrowser1.Document.GetElementsByTagName("Button");
                         if (mHtmlAll.Count < 2) break;
                         for (int i = 0; i < mHtmlAll.Count; i++)
                         {
@@ -114,10 +115,12 @@ namespace 数码之家签到
                             {
                                 mHtmlAll[i].InvokeMember("click");
                                 Log.Text = "正在登录...";
+                                return;
                                 webBrowser1_state = 1;
                                 break;
                             }
                         }
+
                     }
                     catch (Exception)
                     {
@@ -130,16 +133,22 @@ namespace 数码之家签到
                 case 1:
                     Log.Text = "登录结果....";
                     bool result_login = false;
-                    mHtmlAll = webBrowser1.Document.GetElementsByTagName("a");
-                    foreach (HtmlElement he in mHtmlAll)
+                    if (webBrowser1.Document.All["seccodeverify_cS"] != null)
                     {
-                        if (he.OuterText != null && he.OuterText.Equals("我的空间"))
-                        {
-                            result_login = true;
-
-                            break;
-                        }
+                        result_login = false;
                     }
+                    else result_login = true;
+
+                    //mHtmlAll = webBrowser1.Document.GetElementsByTagName("a");
+                    //foreach (HtmlElement he in mHtmlAll)
+                    //{
+                    //    if (he.OuterText != null && he.OuterText.Equals("我的空间"))
+                    //    {
+                    //        result_login = true;
+
+                    //        break;
+                    //    }
+                    //}
                     if (result_login)
                     {
                         Log.Text = "登录成功";
@@ -155,19 +164,29 @@ namespace 数码之家签到
                 case 2:
                     //登录成功,点击签到按钮
                     bool result_button = false;
-                    mHtmlAll = webBrowser1.Document.GetElementsByTagName("span");
-                    foreach (HtmlElement he in mHtmlAll)
+                    try
                     {
-                        if (he.OuterText != null)
-                            Console.WriteLine(he.OuterText);
-                        if (he.OuterText != null && he.OuterText.EndsWith("打卡"))
-                        {
-
-                            result_button = true;
-                            he.InvokeMember("click");
-                            break;
-                        }
+                        webBrowser1.Document.All["JD_sign"].InvokeMember("click");
+                        result_button = true;
                     }
+                    catch (Exception)
+                    {
+                        result_button = false;
+                        //throw;
+                    }
+                    //mHtmlAll = webBrowser1.Document.GetElementsByTagName("span");
+                    //foreach (HtmlElement he in mHtmlAll)
+                    //{
+                    //    if (he.OuterText != null)
+                    //        Console.WriteLine(he.OuterText);
+                    //    if (he.OuterText != null && he.OuterText.EndsWith("打卡"))
+                    //    {
+
+                    //        result_button = true;
+                    //        he.InvokeMember("click");
+                    //        break;
+                    //    }
+                    //}
                     if (result_button)
                     {
                         Log.Text = "打卡完成";
